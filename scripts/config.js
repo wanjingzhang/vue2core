@@ -31,6 +31,7 @@ const consolidatePath = require.resolve('@vue/consolidate/package.json', {
   paths: [path.resolve(__dirname, '../packages/compiler-sfc')]
 })
 
+// 测试、生成、等配置
 const builds = {
   // Runtime only (CommonJS). Used by bundlers e.g. Webpack & Browserify
   'runtime-cjs-dev': {
@@ -225,8 +226,10 @@ const builds = {
   }
 }
 
+// 获取配置
 function genConfig(name) {
-  const opts = builds[name]
+  const opts = builds[name] // 获取声明的对象
+  // https://www.bilibili.com/video/BV1Ma41117m6/?p=1&spm_id_from=pageDriver&vd_source=04f676640e080eac505f2d37bf11a0a2
 
   // console.log('__dir', __dirname)
   const config = {
@@ -300,5 +303,7 @@ if (process.env.TARGET) {
   module.exports = genConfig(process.env.TARGET)
 } else {
   exports.getBuild = genConfig
+  // 导出
+  // 获取所有打包的配置，把每个key生成rollup文件
   exports.getAllBuilds = () => Object.keys(builds).map(genConfig)
 }

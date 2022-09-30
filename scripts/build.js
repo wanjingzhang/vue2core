@@ -1,13 +1,17 @@
+// 打包
 const fs = require('fs')
 const path = require('path')
 const zlib = require('zlib')
 const rollup = require('rollup')
 const terser = require('terser')
 
-if (!fs.existsSync('dist')) {
+// 1. 查看打包vue的时候，是以哪个文件作为入口
+
+// 创建一个输出目录
+if (!fs.existsSync('dist')) { 
   fs.mkdirSync('dist')
 }
-
+// 通过配置进行打包
 let builds = require('./config').getAllBuilds()
 
 // filter builds via command line arg
